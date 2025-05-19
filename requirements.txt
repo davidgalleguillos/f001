@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+websockets
+python-dotenv
+# Agrega aquí otras dependencias principales como httpx, y las de protocolos de red si se definen.
+

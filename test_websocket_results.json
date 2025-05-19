@@ -1,0 +1,15 @@
+{
+    "TC001_conexion_exitosa": true,
+    "TC002_envio_recepcion_hola": true,
+    "TC003_persistencia_historial": false,
+    "TC004_intento_aprendizaje": false,
+    "mensajes_recibidos": [
+        "Bienvenido, Cliente 042a0908-62b0-4bea-823d-112872d23f47! Est\u00e1s conectado a Frondabrick.",
+        "Cliente 042a0908-62b0-4bea-823d-112872d23f47 dice: hola",
+        "Hola! Soy Frondabrick. \u00bfEn qu\u00e9 puedo ayudarte hoy?",
+        "Cliente 042a0908-62b0-4bea-823d-112872d23f47 dice: aprender que los p\u00e1jaros vuelan",
+        "He recibido tu mensaje: 'aprender que los p\u00e1jaros vuelan'. A\u00fan estoy aprendiendo a procesar solicitudes complejas.",
+        "Cliente 042a0908-62b0-4bea-823d-112872d23f47 dice: c\u00f3mo est\u00e1s?",
+        "He recibido tu mensaje: 'c\u00f3mo est\u00e1s?'. A\u00fan estoy aprendiendo a procesar solicitudes complejas."
+    ]
+}

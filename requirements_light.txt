@@ -1,0 +1,22 @@
+# Dependencias principales
+fastapi==0.95.0
+uvicorn[standard]==0.21.1
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+pydantic==1.10.7
+sqlalchemy==2.0.9
+aiosqlite==0.18.0
+
+# Procesamiento de lenguaje
+spacy==3.5.3
+https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.5.0/es_core_news_sm-3.5.0-py3-none-any.whl
+
+# Utilidades
+python-dotenv==1.0.0
+tqdm==4.65.0
+loguru==0.7.0
+
+# Testing (opcional para desarrollo)
+pytest==7.3.1
+httpx==0.24.0

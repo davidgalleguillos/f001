@@ -1,5 +1,6 @@
 # app/routers/interaccion_http.py
 from fastapi import APIRouter, HTTPException
+from fronda_brick_core.persistencia import crud
 
 router = APIRouter()
 
@@ -22,3 +23,13 @@ async def post_feedback(feedback_data: dict):
         raise HTTPException(status_code=400, detail="El comentario no puede estar vacío.")
     return {"mensaje": "Feedback recibido correctamente", "datos": feedback_data}
 
+@router.get("/historial/{client_id}", tags=["historial"])
+async def get_historial(client_id: str, limit: int = 20):
+    """
+    Devuelve el historial de preguntas y respuestas de un cliente.
+    """
+    try:
+        historial = crud.get_conversation_history(client_id, limit=limit)
+        return {"historial": historial}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al recuperar historial: {e}")

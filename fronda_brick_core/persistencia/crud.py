@@ -20,9 +20,7 @@ def add_knowledge(clave: str, valor: str, fuente: str = None) -> int:
         print(f"Conocimiento añadido: {clave} -> {valor}")
         return cursor.lastrowid
     except sqlite3.IntegrityError:
-        print(f"Error: La clave de conocimiento 
-{clave}
- ya existe.")
+        print(f"Error: La clave de conocimiento '{clave}' ya existe.")
         return None
     finally:
         conn.close()
@@ -77,9 +75,7 @@ def add_rule(regla: str, descripcion: str = None, activa: bool = True) -> int:
         print(f"Regla añadida: {regla}")
         return cursor.lastrowid
     except sqlite3.IntegrityError:
-        print(f"Error: La regla 
-{regla}
- ya existe.")
+        print(f"Error: La regla '{regla}' ya existe.")
         return None
     finally:
         conn.close()

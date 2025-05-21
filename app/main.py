@@ -24,6 +24,8 @@ async def get_root():
     return HTMLResponse("""
     <h1>Frondabrick WebSocket Tester</h1>
     <p>Connect to /ws/chat</p>
+    <button onclick="fetchHistorial()" style='margin-bottom:10px;'>Ver Historial</button>
+    <div id='historial' style='max-height:180px;overflow:auto;font-size:0.95em;margin-bottom:10px;'></div>
     <script>
         var ws = new WebSocket("ws://localhost:8000/ws/chat");
         ws.onmessage = function(event) {
@@ -38,6 +40,38 @@ async def get_root():
             ws.send(input.value)
             input.value = ''
             event.preventDefault()
+        }
+        function fetchHistorial() {
+            // Obtener el client_id actual del primer mensaje de bienvenida, si existe
+            var clientId = null;
+            var messages = document.getElementById('messages');
+            if (messages && messages.children.length > 0) {
+                var welcome = messages.children[0].textContent;
+                var match = welcome && welcome.match(/Cliente ([\w\-]+)/);
+                if (match) clientId = match[1];
+            }
+            if (!clientId) {
+                alert('Primero debes conectarte y recibir el mensaje de bienvenida.');
+                return;
+            }
+            fetch('/historial/' + clientId)
+                .then(r => r.json())
+                .then(data => {
+                    var historialDiv = document.getElementById('historial');
+                    if (!data.historial || data.historial.length === 0) {
+                        historialDiv.innerHTML = '<em>Sin historial para este cliente.</em>';
+                        return;
+                    }
+                    var html = '<ul style="padding-left:16px">';
+                    data.historial.reverse().forEach(function(item) {
+                        html += '<li><b>Yo:</b> ' + item.mensaje_usuario + '<br><b>Fronda:</b> ' + item.respuesta_ia + '</li>';
+                    });
+                    html += '</ul>';
+                    historialDiv.innerHTML = html;
+                })
+                .catch(() => {
+                    document.getElementById('historial').innerHTML = '<em>Error al obtener historial.</em>';
+                });
         }
     </script>
     <ul id='messages'></ul>
